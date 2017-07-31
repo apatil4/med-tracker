@@ -1,8 +1,6 @@
 package com.gtaks.alexa.medtracker.helloworld.storage;
 
-import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
@@ -17,5 +15,9 @@ public class ItemDao {
         this.dynamoDB = AmazonDynamoDBClientBuilder.standard().build();
         this.mapper = new DynamoDBMapper(dynamoDB);
     }
-    // TODO
+
+    public void setItem(MedItem item) {
+        this.mapper.save(item);
+    }
+
 }

@@ -10,6 +10,8 @@ package com.gtaks.alexa.medtracker.helloworld;
  or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
+import com.gtaks.alexa.medtracker.helloworld.storage.ItemDao;
+import com.gtaks.alexa.medtracker.helloworld.storage.MedItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +28,19 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * This sample shows how to create a simple speechlet for handling speechlet requests.
  */
 public class HelloWorldSpeechlet implements Speechlet {
   private static final Logger log = LoggerFactory.getLogger(HelloWorldSpeechlet.class);
+
+  private final ItemDao dao;
+
+  public HelloWorldSpeechlet(ItemDao dao) {
+    this.dao = dao;
+  }
 
   public void onSessionStarted(final SessionStartedRequest request, final Session session)
     throws SpeechletException {
@@ -53,7 +63,19 @@ public class HelloWorldSpeechlet implements Speechlet {
 
     Intent intent = request.getIntent();
     String intentName = (intent != null) ? intent.getName() : null;
-
+    /***********************/
+    // This is just for testing to see if I can write to dynamodb successfully
+    // NOT WORKING YET
+    MedItem item = new MedItem();
+    int id = ThreadLocalRandom.current().nextInt(1, 999);
+    String dt = "" + System.currentTimeMillis();
+    item.setId(id);
+    item.setMedicineName("med" + id);
+    item.setUserId(session.getUser().getUserId());
+    item.setCreatedDatetime(dt);
+    this.dao.setItem(item);
+    System.out.println("Trying to save to dynamodb");
+    /***********************/
     if ("HelloWorldIntent".equals(intentName)) {
       return getHelloResponse();
     } else if ("AMAZON.HelpIntent".equals(intentName)) {

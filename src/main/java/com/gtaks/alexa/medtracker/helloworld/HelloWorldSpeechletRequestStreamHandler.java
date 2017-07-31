@@ -1,6 +1,7 @@
 package com.gtaks.alexa.medtracker.helloworld;
 
 import com.amazon.speech.speechlet.lambda.SpeechletRequestStreamHandler;
+import com.gtaks.alexa.medtracker.helloworld.storage.ItemDao;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +25,6 @@ public final class HelloWorldSpeechletRequestStreamHandler extends SpeechletRequ
   }
 
   public HelloWorldSpeechletRequestStreamHandler() {
-    super(new HelloWorldSpeechlet(), supportedApplicationIds);
+    super(new HelloWorldSpeechlet(new ItemDao()), supportedApplicationIds);
   }
 }
