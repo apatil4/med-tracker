@@ -2,6 +2,7 @@ package com.gtaks.alexa.medtracker.helloworld.storage;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 /**
@@ -9,21 +10,21 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
  */
 @DynamoDBTable(tableName="MedTracker_items")
 public class MedItem {
-    private Integer id;
+    private String id;
     private String createdDatetime;
     private String userId;
     private String medicineName;
 
     @DynamoDBHashKey(attributeName="Id")
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    @DynamoDBAttribute(attributeName="created_datetime")
+    @DynamoDBRangeKey(attributeName="created_datetime")
     public String getCreatedDatetime() {
         return createdDatetime;
     }

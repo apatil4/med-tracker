@@ -53,6 +53,18 @@ public class HelloWorldSpeechlet implements Speechlet {
     throws SpeechletException {
     log.info("onLaunch requestId={}, sessionId={}", request.getRequestId(),
       session.getSessionId());
+    /***********************/
+    // This is just for testing to see if I can write to dynamodb successfully
+    MedItem item = new MedItem();
+    int id = ThreadLocalRandom.current().nextInt(1, 999);
+    String dt = "" + System.currentTimeMillis();
+    item.setId("" +id);
+    item.setMedicineName("med" + id);
+    item.setUserId(session.getUser().getUserId());
+    item.setCreatedDatetime(dt);
+    this.dao.setItem(item);
+    log.info("Saved a record to dynamodb with id " + id);
+    /***********************/
     return getWelcomeResponse();
   }
 
@@ -63,19 +75,6 @@ public class HelloWorldSpeechlet implements Speechlet {
 
     Intent intent = request.getIntent();
     String intentName = (intent != null) ? intent.getName() : null;
-    /***********************/
-    // This is just for testing to see if I can write to dynamodb successfully
-    // NOT WORKING YET
-    MedItem item = new MedItem();
-    int id = ThreadLocalRandom.current().nextInt(1, 999);
-    String dt = "" + System.currentTimeMillis();
-    item.setId(id);
-    item.setMedicineName("med" + id);
-    item.setUserId(session.getUser().getUserId());
-    item.setCreatedDatetime(dt);
-    this.dao.setItem(item);
-    System.out.println("Trying to save to dynamodb");
-    /***********************/
     if ("HelloWorldIntent".equals(intentName)) {
       return getHelloResponse();
     } else if ("AMAZON.HelpIntent".equals(intentName)) {
