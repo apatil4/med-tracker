@@ -1,7 +1,21 @@
 {
   "intents": [
     {
-      "intent": "HelloWorldIntent"
+      "intent": "AddMedicineIntent",
+      "slots": [
+        {
+          "name": "User",
+          "type": "AMAZON.US_FIRST_NAME"
+        },
+        {
+          "name": "Medicine",
+          "type": "LIST_OF_MEDICINES"
+        },
+        {
+          "name": "Date",
+          "type": "AMAZON.DATE"
+        }
+      ]
     },
     {
       "intent": "AMAZON.HelpIntent"
