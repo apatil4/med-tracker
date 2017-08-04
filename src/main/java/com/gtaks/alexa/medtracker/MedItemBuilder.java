@@ -1,7 +1,7 @@
-package com.gtaks.alexa.medtracker.helloworld;
+package com.gtaks.alexa.medtracker;
 
 import com.amazon.speech.slu.Slot;
-import com.gtaks.alexa.medtracker.helloworld.storage.MedItem;
+import com.gtaks.alexa.medtracker.storage.MedItem;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;

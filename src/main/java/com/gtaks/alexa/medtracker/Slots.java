@@ -1,4 +1,4 @@
-package com.gtaks.alexa.medtracker.helloworld;
+package com.gtaks.alexa.medtracker;
 
 /**
  * Created by akshaypatil on 8/4/17.

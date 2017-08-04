@@ -1,4 +1,4 @@
-package com.gtaks.alexa.medtracker.helloworld;
+package com.gtaks.alexa.medtracker;
 
 import com.amazon.speech.speechlet.lambda.SpeechletRequestStreamHandler;
 

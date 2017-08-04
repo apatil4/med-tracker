@@ -1,4 +1,4 @@
-package com.gtaks.alexa.medtracker.helloworld;
+package com.gtaks.alexa.medtracker;
 
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.slu.Slot;
@@ -7,8 +7,8 @@ import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
-import com.gtaks.alexa.medtracker.helloworld.storage.MedItem;
-import com.gtaks.alexa.medtracker.helloworld.storage.MedItemDao;
+import com.gtaks.alexa.medtracker.storage.MedItem;
+import com.gtaks.alexa.medtracker.storage.MedItemDao;
 
 /**
  * Created by akshaypatil on 8/3/17.
