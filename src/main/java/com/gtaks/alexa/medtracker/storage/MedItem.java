@@ -12,10 +12,10 @@ import org.joda.time.DateTime;
 @DynamoDBTable(tableName="MedTracker_items")
 public class MedItem {
     private String id;
-    private DateTime dosageDate;
+    private String dosageDate;
     private String userName;
     private String medicineName;
-    private DateTime createdDatetime;
+    private String createdDatetime;
 
     @DynamoDBHashKey(attributeName="Id")
     public String getId() {
@@ -27,20 +27,20 @@ public class MedItem {
     }
 
     @DynamoDBRangeKey(attributeName="dosage_date")
-    public DateTime getDosageDate() {
+    public String getDosageDate() {
         return dosageDate;
     }
 
-    public void setDosageDate(DateTime dosageDate) {
+    public void setDosageDate(String dosageDate) {
         this.dosageDate = dosageDate;
     }
 
     @DynamoDBRangeKey(attributeName="created_datetime")
-    public DateTime getCreatedDatetime() {
+    public String getCreatedDatetime() {
         return createdDatetime;
     }
 
-    public void setCreatedDatetime(DateTime createdDatetime) {
+    public void setCreatedDatetime(String createdDatetime) {
         this.createdDatetime = createdDatetime;
     }
 

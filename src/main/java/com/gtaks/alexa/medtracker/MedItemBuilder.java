@@ -43,12 +43,10 @@ public class MedItemBuilder {
         }
 
         if(dateSlot.getValue() != null) {
-            DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
-            DateTime dosageDateTime = dateTimeFormatter.parseDateTime(dateSlot.getValue());
-            medItem.setDosageDate(dosageDateTime);
+            medItem.setDosageDate(dateSlot.getValue());
         }
 
-        medItem.setCreatedDatetime(DateTime.now());
+        medItem.setCreatedDatetime(DateTime.now().toString("YYYY-MM-DD"));
         return medItem;
     }
 }
