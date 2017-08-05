@@ -1,5 +1,5 @@
-AddMedicineIntent {User} took {Medicine} today
-AddMedicineIntent {User} took {Medicine} yesterday
-AddMedicineIntent {User} took {Medicine} on {Date}
-AddMedicineIntent {Date} is when {User} took his medicine {Medicine}
-AddMedicineIntent {Date} is when {User} took take her medicine {Medicine}
+AddMedIntent {user} took {medicine} today
+AddMedIntent {user} took {medicine} yesterday
+AddMedIntent {user} took {medicine} on {Date}
+AddMedIntent {datetime} is when {user} took his medicine {medicine}
+AddMedIntent {datetime} is when {user} took take her medicine {medicine}

@@ -9,12 +9,15 @@ import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 import com.gtaks.alexa.medtracker.storage.MedItem;
 import com.gtaks.alexa.medtracker.storage.MedItemDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by akshaypatil on 8/3/17.
  */
 public class MedTrackerResponseService {
 
+    private static final Logger log = LoggerFactory.getLogger(MedTrackerResponseService.class);
     private MedItemDao medItemDao;
 
     MedTrackerResponseService() {
@@ -25,6 +28,7 @@ public class MedTrackerResponseService {
 
         final MedItem medItem = getMedItem(intent);
         medItemDao.saveItem(medItem);
+        log.info("MedItem saved for user {} and medicine {}", medItem.getUserName(), medItem.getMedicineName());
         String speechText = medItem.getMedicineName() + " has been added for " + medItem.getUserName();
         return buildResponse(speechText);
     }

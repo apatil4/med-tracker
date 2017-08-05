@@ -3,14 +3,15 @@ package com.gtaks.alexa.medtracker;
 import com.amazon.speech.slu.Slot;
 import com.gtaks.alexa.medtracker.storage.MedItem;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by akshaypatil on 8/4/17.
  */
 public class MedItemBuilder {
 
+    private static final Logger log = LoggerFactory.getLogger(MedItemBuilder.class);
     private Slot userSlot;
     private Slot medicineSlot;
     private Slot dateSlot;
@@ -34,19 +35,22 @@ public class MedItemBuilder {
 
         final MedItem medItem = new MedItem();
 
-        if(userSlot.getValue() != null) {
+        if(userSlot !=null && userSlot.getValue() != null) {
+            log.info("Adding userslot");
             medItem.setUserName(userSlot.getValue());
         }
 
-        if(medicineSlot.getValue() != null) {
+        if(medicineSlot != null && medicineSlot.getValue() != null) {
+            log.info("Adding medicineslot");
             medItem.setMedicineName(medicineSlot.getValue());
         }
 
-        if(dateSlot.getValue() != null) {
+        if(dateSlot != null && dateSlot.getValue() != null) {
+            log.info("Adding dateslot");
             medItem.setDosageDate(dateSlot.getValue());
         }
 
-        medItem.setCreatedDatetime(DateTime.now().toString("YYYY-MM-DD"));
+        medItem.setCreatedDatetime(DateTime.now().toString());
         return medItem;
     }
 }

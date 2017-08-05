@@ -36,12 +36,12 @@ public class MedTrackerSpeechlet implements Speechlet {
 
     public SpeechletResponse onIntent(IntentRequest request, Session session)
             throws SpeechletException {
-        log.info("onIntent requestId={}, sessionId={}", request.getRequestId(),
+        log.info("onIntent intentName={} requestId={}, sessionId={}", request.getIntent().getName(), request.getRequestId(),
                 session.getSessionId());
         initializeComponents();
 
         Intent intent = request.getIntent();
-        if ("AddMedicineIntent".equals(intent.getName())) {
+        if ("AddMedIntent".equals(intent.getName())) {
             return medTrackerResponseService.getAddMedicineIntentResponse(session, intent);
         } else {
             throw new IllegalArgumentException("Unrecognized intent: " + intent.getName());
@@ -59,6 +59,8 @@ public class MedTrackerSpeechlet implements Speechlet {
      * Initializes the instance components if needed.
      */
     private void initializeComponents() {
-        medTrackerResponseService = new MedTrackerResponseService();
+        if(medTrackerResponseService == null) {
+            medTrackerResponseService = new MedTrackerResponseService();
+        }
     }
 }

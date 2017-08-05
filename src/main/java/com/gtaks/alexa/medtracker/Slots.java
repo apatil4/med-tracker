@@ -5,8 +5,8 @@ package com.gtaks.alexa.medtracker;
  */
 public class Slots {
 
-    public static final String MEDICINE = "Medicine";
-    public static final String USER = "User";
-    public static final String DATE = "Date";
+    public static final String MEDICINE = "medicine";
+    public static final String USER = "user";
+    public static final String DATE = "datetime";
 
 }
