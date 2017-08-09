@@ -1,18 +1,18 @@
 {
   "intents": [
     {
-      "intent": "AddMedicineIntent",
+      "intent": "AddMedIntent",
       "slots": [
         {
-          "name": "User",
+          "name": "user",
           "type": "AMAZON.US_FIRST_NAME"
         },
         {
-          "name": "Medicine",
+          "name": "medicine",
           "type": "LIST_OF_MEDICINES"
         },
         {
-          "name": "Date",
+          "name": "datetime",
           "type": "AMAZON.DATE"
         }
       ]

@@ -1,0 +1,5 @@
+AddMedIntent {user} took {medicine} today
+AddMedIntent {user} took {medicine} yesterday
+AddMedIntent {user} took {medicine} on {Date}
+AddMedIntent {datetime} is when {user} took his medicine {medicine}
+AddMedIntent {datetime} is when {user} took take her medicine {medicine}
