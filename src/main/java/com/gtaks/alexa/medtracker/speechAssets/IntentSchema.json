@@ -18,6 +18,19 @@
       ]
     },
     {
+      "intent": "ListMedIntent",
+      "slots": [
+        {
+          "name": "user",
+          "type": "AMAZON.US_FIRST_NAME"
+        },
+        {
+          "name": "datetime",
+          "type": "AMAZON.DATE"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     }
   ]

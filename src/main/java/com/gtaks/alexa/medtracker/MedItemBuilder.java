@@ -2,6 +2,7 @@ package com.gtaks.alexa.medtracker;
 
 import com.amazon.speech.slu.Slot;
 import com.gtaks.alexa.medtracker.storage.MedItem;
+import com.gtaks.alexa.medtracker.storage.MedItemByUser;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +38,12 @@ public class MedItemBuilder {
 
         if(userSlot !=null && userSlot.getValue() != null) {
             log.info("Adding userslot");
-            medItem.setUserName(userSlot.getValue());
+            medItem.setUserName(userSlot.getValue().toLowerCase());
         }
 
         if(medicineSlot != null && medicineSlot.getValue() != null) {
             log.info("Adding medicineslot");
-            medItem.setMedicineName(medicineSlot.getValue());
+            medItem.setMedicineName(medicineSlot.getValue().toLowerCase());
         }
 
         if(dateSlot != null && dateSlot.getValue() != null) {
@@ -52,5 +53,16 @@ public class MedItemBuilder {
 
         medItem.setCreatedDatetime(DateTime.now().toString());
         return medItem;
+    }
+
+    /* Should this go in the builder or somewhere else?? TODO*/
+    public MedItem buildFrom(MedItemByUser medItemByUser) {
+        MedItem item = new MedItem();
+        item.setCreatedDatetime(medItemByUser.getCreatedDatetime());
+        item.setMedicineName(medItemByUser.getMedicineName());
+        item.setDosageDate(medItemByUser.getDosageDate());
+        item.setId(medItemByUser.getId());
+        item.setUserName(medItemByUser.getUserName());
+        return item;
     }
 }

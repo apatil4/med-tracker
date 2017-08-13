@@ -3,3 +3,8 @@ AddMedIntent {user} took {medicine} yesterday
 AddMedIntent {user} took {medicine} on {Date}
 AddMedIntent {datetime} is when {user} took his medicine {medicine}
 AddMedIntent {datetime} is when {user} took take her medicine {medicine}
+
+ListMedIntent list {user} medicines for {datetime}
+ListMedIntent list {user} medicines for today
+ListMedIntent list {user} medicines for yesterday
+ListMedIntent list {user} medicines
