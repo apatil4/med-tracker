@@ -9,7 +9,7 @@
         },
         {
           "name": "medicine",
-          "type": "LIST_OF_MEDICINES"
+          "type": "AMAZON.US_FIRST_NAME"
         },
         {
           "name": "datetime",
