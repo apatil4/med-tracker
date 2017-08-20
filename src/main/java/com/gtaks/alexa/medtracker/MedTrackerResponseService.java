@@ -1,5 +1,6 @@
 package com.gtaks.alexa.medtracker;
 
+import com.amazon.speech.slu.ConfirmationStatus;
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.slu.Slot;
 import com.amazon.speech.speechlet.Session;
@@ -30,17 +31,17 @@ public class MedTrackerResponseService {
 
     public SpeechletResponse getAddMedicineIntentResponse(Session session, Intent intent) {
         String speechText = "";
-        final MedItem medItem = getMedItem(intent);
+        final MedItem medItem = getMedItem(session, intent);
         List<MedItemByUser> existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), medItem.getDosageDate());
         MedItemByUser matchingMed = existingMatchingMedicine(medItem, existingMeds);
         if (matchingMed == null) {
             medItemDao.saveItem(medItem);
             log.info("MedItem saved for user {} and medicine {}", medItem.getUserName(), medItem.getMedicineName());
-            speechText = medItem.getMedicineName() + " has been added for " + medItem.getUserName();
+            speechText = medItem.getMedicineName() + " has been added";
         } else {
             log.info("MedItem already exists for user {} and medicine {} and dosage date {}", matchingMed.getUserName(),
                     matchingMed.getMedicineName(), matchingMed.getDosageDate());
-            speechText = matchingMed.getMedicineName() + " already added for " + matchingMed.getUserName();
+            speechText = matchingMed.getMedicineName() + " already added";
         }
 
         return buildResponse(speechText);
@@ -53,7 +54,7 @@ public class MedTrackerResponseService {
 
     public SpeechletResponse getListMedicineIntentResponse(Session session, Intent intent) {
 
-        final MedItem medItem = getMedItem(intent);
+        final MedItem medItem = getMedItem(session, intent);
         String speechText = "No medicines for " + medItem.getUserName();
         List<MedItemByUser> existingMeds;
         if (medItem.getDosageDate() != null) {
@@ -73,13 +74,16 @@ public class MedTrackerResponseService {
         return buildResponse(speechText);
     }
 
-    private MedItem getMedItem(Intent intent) {
+    private MedItem getMedItem(Session session, Intent intent) {
 
         final Slot userSlot = intent.getSlot(Slots.USER);
+        final String defaultUser = session.getUser().getUserId();
+        log.info("Default User is {}", defaultUser);
+
         final Slot medicineSlot = intent.getSlot(Slots.MEDICINE);
         final Slot dateSlot = intent.getSlot(Slots.DATE);
 
-        return new MedItemBuilder().setUserSlot(userSlot)
+        return new MedItemBuilder().setUserSlot(userSlot, defaultUser)
                 .setMedicineSlot(medicineSlot)
                 .setDateSlot(dateSlot)
                 .build();

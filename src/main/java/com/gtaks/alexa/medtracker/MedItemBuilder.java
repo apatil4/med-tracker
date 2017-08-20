@@ -16,9 +16,11 @@ public class MedItemBuilder {
     private Slot userSlot;
     private Slot medicineSlot;
     private Slot dateSlot;
+    private String defaultUser;
 
-    public MedItemBuilder setUserSlot(Slot userSlot){
+    public MedItemBuilder setUserSlot(Slot userSlot, String defaultUser){
         this.userSlot = userSlot;
+        this.defaultUser = defaultUser;
         return this;
     }
 
@@ -39,6 +41,9 @@ public class MedItemBuilder {
         if(userSlot !=null && userSlot.getValue() != null) {
             log.info("Adding userslot");
             medItem.setUserName(userSlot.getValue().toLowerCase());
+        } else {
+            log.info("Setting default userslot");
+            medItem.setUserName(defaultUser);
         }
 
         if(medicineSlot != null && medicineSlot.getValue() != null) {
@@ -49,6 +54,8 @@ public class MedItemBuilder {
         if(dateSlot != null && dateSlot.getValue() != null) {
             log.info("Adding dateslot");
             medItem.setDosageDate(dateSlot.getValue());
+        } else {
+            medItem.setDosageDate(DateTime.now().toLocalDate().toString());
         }
 
         medItem.setCreatedDatetime(DateTime.now().toString());

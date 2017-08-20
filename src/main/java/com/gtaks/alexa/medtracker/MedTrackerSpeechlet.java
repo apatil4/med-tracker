@@ -2,9 +2,15 @@ package com.gtaks.alexa.medtracker;
 
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
+import com.amazon.speech.speechlet.dialog.directives.DelegateDirective;
+import com.amazon.speech.speechlet.dialog.directives.DialogDirective;
+import com.amazon.speech.speechlet.dialog.directives.DialogIntent;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by akshaypatil on 8/3/17.
@@ -42,6 +48,9 @@ public class MedTrackerSpeechlet implements Speechlet {
 
         Intent intent = request.getIntent();
         if ("AddMedIntent".equals(intent.getName())) {
+            if (request.getDialogState() != IntentRequest.DialogState.COMPLETED) {
+                return getDelegateResponse(intent);
+            }
             return medTrackerResponseService.getAddMedicineIntentResponse(session, intent);
         } else if ("ListMedIntent".equals(intent.getName())) {
             return medTrackerResponseService.getListMedicineIntentResponse(session, intent);
@@ -55,6 +64,23 @@ public class MedTrackerSpeechlet implements Speechlet {
         log.info("onSessionEnded requestId={}, sessionId={}", request.getRequestId(),
                 session.getSessionId());
         // any cleanup logic goes here
+    }
+
+    public SpeechletResponse getDelegateResponse(Intent intent) {
+        DialogIntent dialogIntent = new DialogIntent(intent);
+
+        // 2.
+        DelegateDirective dd = new DelegateDirective();
+        dd.setUpdatedIntent(dialogIntent);
+
+        List<Directive> directiveList = new ArrayList<Directive>();
+        directiveList.add(dd);
+
+        SpeechletResponse speechletResp = new SpeechletResponse();
+        speechletResp.setDirectives(directiveList);
+        // 3.
+        speechletResp.setNullableShouldEndSession(false);
+        return speechletResp;
     }
 
     /**
