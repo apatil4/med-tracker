@@ -52,7 +52,7 @@ public class MedItemByUser {
         Id = id;
     }
 
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = Index.USER_NAME_MEDICINE_NAME_INDEX, attributeName = "medicine_name")
+    @DynamoDBAttribute(attributeName="medicine_name")
     public String getMedicineName() {
         return medicineName;
     }
