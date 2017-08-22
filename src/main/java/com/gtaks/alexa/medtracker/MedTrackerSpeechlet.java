@@ -54,6 +54,8 @@ public class MedTrackerSpeechlet implements Speechlet {
             return medTrackerResponseService.getAddMedicineIntentResponse(session, intent);
         } else if ("ListMedIntent".equals(intent.getName())) {
             return medTrackerResponseService.getListMedicineIntentResponse(session, intent);
+        } else if ("DeleteMedIntent".equals(intent.getName())) {
+            return medTrackerResponseService.getDeleteMedicineIntentResponse(session, intent);
         } else {
             throw new IllegalArgumentException("Unrecognized intent: " + intent.getName());
         }

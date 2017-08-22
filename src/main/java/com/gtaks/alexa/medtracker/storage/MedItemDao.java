@@ -25,7 +25,7 @@ public class MedItemDao {
     }
 
     public void saveItem(MedItem item) {
-        this.mapper.save(item);
+        mapper.save(item);
     }
 
     public List<MedItemByUser> getItemByUserAndDosageDate(String username, String dosageDate) {
@@ -42,9 +42,8 @@ public class MedItemDao {
         return mapper.query(MedItemByUser.class, queryExpression);
     }
 
-    public List<MedItemByUser> getItemsByUser(String username) {
-        // Lookback maximum 1 week
-        String dosageDateLookback = DateTime.now().minusWeeks(1).toString();
+    public List<MedItemByUser> getItemsByUserAndWeek(String username, int weeksLookBack) {
+        String dosageDateLookback = DateTime.now().minusWeeks(weeksLookBack).toString();
 
         HashMap<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
         eav.put(":un",  new AttributeValue().withS(username));
@@ -56,7 +55,24 @@ public class MedItemDao {
                 .withKeyConditionExpression("user_name = :un and dosage_date > :dd")
                 .withExpressionAttributeValues(eav);
 
-        List<MedItemByUser> iList =  mapper.query(MedItemByUser.class, queryExpression);
-        return iList;
+        return mapper.query(MedItemByUser.class, queryExpression);
+    }
+
+    public List<MedItemByUser> getItemsByUser(String username) {
+
+        HashMap<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+        eav.put(":un",  new AttributeValue().withS(username));
+
+        DynamoDBQueryExpression<MedItemByUser> queryExpression = new DynamoDBQueryExpression<MedItemByUser>()
+                .withIndexName(Index.USER_DOSAGE_DATE_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("user_name = :un")
+                .withExpressionAttributeValues(eav);
+
+        return mapper.query(MedItemByUser.class, queryExpression);
+    }
+
+    public void delete(MedItemByUser medItemByUser) {
+        mapper.delete(medItemByUser);
     }
 }
