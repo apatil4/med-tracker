@@ -82,9 +82,10 @@ public class MedTrackerResponseService {
         }
         else {
             speechText = "No medicines for " + medItem.getUserName();
-            List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUser(medItem.getUserName());
+            List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndWeek(medItem.getUserName(), 12);
             MedItemByUser medItemByUser = existingMatchingMedicine(medItem, medItemByUsersList);
             if(medItemByUser != null) {
+                log.info("Found MedItem for user - " + medItemByUser.getUserName());
                 medItemDao.delete(medItemByUser);
                 speechText = "Delete medicine " + medItemByUser.getMedicineName() + " for " + medItemByUser.getUserName();
             }

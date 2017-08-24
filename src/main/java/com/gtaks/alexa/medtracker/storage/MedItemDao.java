@@ -2,11 +2,16 @@ package com.gtaks.alexa.medtracker.storage;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.gtaks.alexa.medtracker.Index;
+import com.gtaks.alexa.medtracker.MedTrackerResponseService;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +22,8 @@ import java.util.List;
 public class MedItemDao {
     private final AmazonDynamoDB dynamoDB;
     private final DynamoDBMapper mapper;
+
+    private static final Logger log = LoggerFactory.getLogger(MedTrackerResponseService.class);
 
 
     public MedItemDao() {
@@ -72,7 +79,23 @@ public class MedItemDao {
         return mapper.query(MedItemByUser.class, queryExpression);
     }
 
-    public void delete(MedItemByUser medItemByUser) {
-        mapper.delete(medItemByUser);
+    public void delete(MedItemByUser medItem) {
+
+//        HashMap<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+//        eav.put(":un",  new AttributeValue().withS(medItem.getUserName()));
+//        eav.put(":dd", new AttributeValue().withS(medItem.getDosageDate()));
+//
+//        DynamoDBDeleteExpression dynamoDBDeleteExpression = new DynamoDBDeleteExpression()
+//                .withConditionExpression("user_name = :un and dosage_date = :dd")
+//                .withExpressionAttributeValues(eav);
+//
+//        DynamoDBMapperConfig dynamoDBMapperConfig = new DynamoDBMapperConfig.Builder()
+//                                                    .withTableNameResolver(new DynamoDBMapperConfig.TableNameResolver() {
+//                                                        public String getTableName(Class<?> clazz, DynamoDBMapperConfig config) {
+//                                                            return "MedTracker_items";
+//                                                        }
+//                                                    }).build();
+
+//        mapper.delete(medItem, dynamoDBDeleteExpression, dynamoDBMapperConfig);
     }
 }
