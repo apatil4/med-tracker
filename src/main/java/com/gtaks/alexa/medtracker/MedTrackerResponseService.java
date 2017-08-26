@@ -61,7 +61,7 @@ public class MedTrackerResponseService {
             existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), medItem.getDosageDate());
             log.info("List of medicines user {} and dosage {}", medItem.getUserName(), medItem.getDosageDate());
         } else {
-            existingMeds = medItemDao.getItemsByUser(medItem.getUserName());
+            existingMeds = medItemDao.getItemsByUserAndWeek(medItem.getUserName(), 1);
             log.info("List of medicines user {}, {} found", medItem.getUserName(), existingMeds.size());
         }
         if (existingMeds.size() > 0) {
@@ -69,6 +69,25 @@ public class MedTrackerResponseService {
             // TODO group by dosage date
             for (MedItemByUser mu : existingMeds) {
                 speechText += " For " + mu.getDosageDate() + " take " + mu.getMedicineName();
+            }
+        }
+        return buildResponse(speechText);
+    }
+
+    public SpeechletResponse getDeleteMedicineIntentResponse(Session session, Intent intent) {
+        final MedItem medItem = getMedItem(session, intent);
+        String speechText = "";
+        if(medItem.getUserName() == null) {
+            speechText = "No user specified";
+        }
+        else {
+            speechText = "No medicines for " + medItem.getUserName();
+            List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndWeek(medItem.getUserName(), 12);
+            MedItemByUser medItemByUser = existingMatchingMedicine(medItem, medItemByUsersList);
+            if(medItemByUser != null) {
+                log.info("Found MedItem for user - " + medItemByUser.getUserName());
+                medItemDao.delete(medItemByUser);
+                speechText = "Delete medicine " + medItemByUser.getMedicineName() + " for " + medItemByUser.getUserName();
             }
         }
         return buildResponse(speechText);

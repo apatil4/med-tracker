@@ -63,7 +63,7 @@ public class MedItemBuilder {
     }
 
     /* Should this go in the builder or somewhere else?? TODO*/
-    public MedItem buildFrom(MedItemByUser medItemByUser) {
+    public static MedItem buildFrom(MedItemByUser medItemByUser) {
         MedItem item = new MedItem();
         item.setCreatedDatetime(medItemByUser.getCreatedDatetime());
         item.setMedicineName(medItemByUser.getMedicineName());

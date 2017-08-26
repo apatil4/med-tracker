@@ -8,3 +8,5 @@ ListMedIntent list {user} medicines for {datetime}
 ListMedIntent list {user} medicines for today
 ListMedIntent list {user} medicines for yesterday
 ListMedIntent list {user} medicines
+
+DeleteMedIntent delete medicine {medicine} for {user}

@@ -31,6 +31,19 @@
       ]
     },
     {
+      "intent": "DeleteMedIntent",
+      "slots": [
+        {
+          "name": "user",
+          "type": "AMAZON.US_FIRST_NAME"
+        },
+        {
+          "name": "medicine",
+          "type": "AMAZON.US_FIRST_NAME"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     }
   ]
