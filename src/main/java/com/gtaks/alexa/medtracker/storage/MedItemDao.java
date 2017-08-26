@@ -8,6 +8,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.gtaks.alexa.medtracker.Index;
+import com.gtaks.alexa.medtracker.MedItemBuilder;
 import com.gtaks.alexa.medtracker.MedTrackerResponseService;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -80,22 +81,8 @@ public class MedItemDao {
     }
 
     public void delete(MedItemByUser medItem) {
-
-//        HashMap<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
-//        eav.put(":un",  new AttributeValue().withS(medItem.getUserName()));
-//        eav.put(":dd", new AttributeValue().withS(medItem.getDosageDate()));
-//
-//        DynamoDBDeleteExpression dynamoDBDeleteExpression = new DynamoDBDeleteExpression()
-//                .withConditionExpression("user_name = :un and dosage_date = :dd")
-//                .withExpressionAttributeValues(eav);
-//
-//        DynamoDBMapperConfig dynamoDBMapperConfig = new DynamoDBMapperConfig.Builder()
-//                                                    .withTableNameResolver(new DynamoDBMapperConfig.TableNameResolver() {
-//                                                        public String getTableName(Class<?> clazz, DynamoDBMapperConfig config) {
-//                                                            return "MedTracker_items";
-//                                                        }
-//                                                    }).build();
-
-//        mapper.delete(medItem, dynamoDBDeleteExpression, dynamoDBMapperConfig);
+        log.info("MedItemByUser key {}", medItem.getId());
+        MedItem me = MedItemBuilder.buildFrom(medItem);
+        mapper.delete(me);
     }
 }
