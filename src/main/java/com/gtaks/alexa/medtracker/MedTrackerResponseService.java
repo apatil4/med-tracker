@@ -11,6 +11,7 @@ import com.amazon.speech.ui.SimpleCard;
 import com.gtaks.alexa.medtracker.storage.MedItem;
 import com.gtaks.alexa.medtracker.storage.MedItemByUser;
 import com.gtaks.alexa.medtracker.storage.MedItemDao;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,9 +33,10 @@ public class MedTrackerResponseService {
     public SpeechletResponse getAddMedicineIntentResponse(Session session, Intent intent) {
         String speechText = "";
         final MedItem medItem = getMedItem(session, intent);
-        List<MedItemByUser> existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), medItem.getDosageDate());
+        List<MedItemByUser> existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), getListDefaultDate(medItem));
         MedItemByUser matchingMed = existingMatchingMedicine(medItem, existingMeds);
         if (matchingMed == null) {
+            medItem.setDosageDate(getAddDefaultDate(medItem));
             medItemDao.saveItem(medItem);
             log.info("MedItem saved for user {} and medicine {}", medItem.getUserName(), medItem.getMedicineName());
             speechText = medItem.getMedicineName() + " has been added";
@@ -55,20 +57,15 @@ public class MedTrackerResponseService {
     public SpeechletResponse getListMedicineIntentResponse(Session session, Intent intent) {
 
         final MedItem medItem = getMedItem(session, intent);
-        String speechText = "No medicines for " + medItem.getUserName();
-        List<MedItemByUser> existingMeds;
-        if (medItem.getDosageDate() != null) {
-            existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), medItem.getDosageDate());
-            log.info("List of medicines user {} and dosage {}", medItem.getUserName(), medItem.getDosageDate());
-        } else {
-            existingMeds = medItemDao.getItemsByUserAndWeek(medItem.getUserName(), 1);
-            log.info("List of medicines user {}, {} found", medItem.getUserName(), existingMeds.size());
-        }
+        String speechText = "No medicines";
+        List<MedItemByUser> existingMeds = medItemDao.getItemsByUserAndDateGreaterThan(medItem.getUserName(), getListDefaultDate(medItem));
+        log.info("List of medicines user {} and dosage {}", medItem.getUserName(), getListDefaultDate(medItem));
+
         if (existingMeds.size() > 0) {
-            speechText = medItem.getUserName() + " has these medicines. ";
+            speechText = "List of medicines. ";
             // TODO group by dosage date
             for (MedItemByUser mu : existingMeds) {
-                speechText += " For " + mu.getDosageDate() + " take " + mu.getMedicineName();
+                speechText += " For " + mu.getDosageDate() + " take " + mu.getMedicineName() + " ,";
             }
         }
         return buildResponse(speechText);
@@ -82,12 +79,12 @@ public class MedTrackerResponseService {
         }
         else {
             speechText = "No medicines for " + medItem.getUserName();
-            List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndWeek(medItem.getUserName(), 12);
+            List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndDateGreaterThan(medItem.getUserName(), getListDefaultDate(medItem));
             MedItemByUser medItemByUser = existingMatchingMedicine(medItem, medItemByUsersList);
             if(medItemByUser != null) {
                 log.info("Found MedItem for user - " + medItemByUser.getUserName());
                 medItemDao.delete(medItemByUser);
-                speechText = "Delete medicine " + medItemByUser.getMedicineName() + " for " + medItemByUser.getUserName();
+                speechText = "Delete medicine " + medItemByUser.getMedicineName();
             }
         }
         return buildResponse(speechText);
@@ -132,5 +129,13 @@ public class MedTrackerResponseService {
             }
         }
         return null;
+    }
+
+    private String getListDefaultDate(MedItem medItem) {
+        return medItem.getDosageDate() == null ? DateTime.now().minusWeeks(1).toLocalDate().toString(): medItem.getDosageDate();
+    }
+
+    private String getAddDefaultDate(MedItem medItem) {
+        return medItem.getDosageDate() == null ? DateTime.now().toLocalDate().toString(): medItem.getDosageDate();
     }
 }
