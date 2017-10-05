@@ -15,8 +15,7 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by akshaypatil on 8/3/17.
@@ -43,7 +42,7 @@ public class MedTrackerResponseService {
         } else {
             log.info("MedItem already exists for user {} and medicine {} and dosage date {}", matchingMed.getUserName(),
                     matchingMed.getMedicineName(), matchingMed.getDosageDate());
-            speechText = matchingMed.getMedicineName() + " already added";
+            speechText = matchingMed.getMedicineName() + " already added for " + matchingMed.getDosageDate();
         }
 
         return buildResponse(speechText);
@@ -63,9 +62,14 @@ public class MedTrackerResponseService {
 
         if (existingMeds.size() > 0) {
             speechText = "List of medicines. ";
-            // TODO group by dosage date
+            Map<String, List<String>> groupByDosageDate = new HashMap<String, List<String>>();
             for (MedItemByUser mu : existingMeds) {
-                speechText += " For " + mu.getDosageDate() + " take " + mu.getMedicineName() + " ,";
+                List<String> li = groupByDosageDate.getOrDefault(mu.getDosageDate(), new ArrayList<String>());
+                li.add(mu.getMedicineName());
+                groupByDosageDate.put(mu.getDosageDate(), li);
+            }
+            for (Map.Entry<String, List<String>> e : groupByDosageDate.entrySet()) {
+                speechText += " For " + e.getKey() + " take " + String.join(",", e.getValue()) + " .";
             }
         }
         return buildResponse(speechText);
@@ -115,11 +119,11 @@ public class MedTrackerResponseService {
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText(speechText);
 
-        // Create reprompt
-        Reprompt reprompt = new Reprompt();
-        reprompt.setOutputSpeech(speech);
+//        // Create reprompt
+//        Reprompt reprompt = new Reprompt();
+//        reprompt.setOutputSpeech(speech);
 
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return SpeechletResponse.newTellResponse(speech, card);
     }
 
     private MedItemByUser existingMatchingMedicine(MedItem newItem, List<MedItemByUser> existingItems) {
