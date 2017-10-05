@@ -54,10 +54,7 @@ public class MedItemBuilder {
         if(dateSlot != null && dateSlot.getValue() != null) {
             log.info("Adding dateslot");
             medItem.setDosageDate(dateSlot.getValue());
-        } else {
-            medItem.setDosageDate(DateTime.now().toLocalDate().toString());
         }
-
         medItem.setCreatedDatetime(DateTime.now().toString());
         return medItem;
     }

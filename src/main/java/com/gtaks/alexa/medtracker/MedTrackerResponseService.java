@@ -11,11 +11,11 @@ import com.amazon.speech.ui.SimpleCard;
 import com.gtaks.alexa.medtracker.storage.MedItem;
 import com.gtaks.alexa.medtracker.storage.MedItemByUser;
 import com.gtaks.alexa.medtracker.storage.MedItemDao;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by akshaypatil on 8/3/17.
@@ -32,16 +32,17 @@ public class MedTrackerResponseService {
     public SpeechletResponse getAddMedicineIntentResponse(Session session, Intent intent) {
         String speechText = "";
         final MedItem medItem = getMedItem(session, intent);
-        List<MedItemByUser> existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), medItem.getDosageDate());
+        List<MedItemByUser> existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), getListDefaultDate(medItem));
         MedItemByUser matchingMed = existingMatchingMedicine(medItem, existingMeds);
         if (matchingMed == null) {
+            medItem.setDosageDate(getAddDefaultDate(medItem));
             medItemDao.saveItem(medItem);
             log.info("MedItem saved for user {} and medicine {}", medItem.getUserName(), medItem.getMedicineName());
             speechText = medItem.getMedicineName() + " has been added";
         } else {
             log.info("MedItem already exists for user {} and medicine {} and dosage date {}", matchingMed.getUserName(),
                     matchingMed.getMedicineName(), matchingMed.getDosageDate());
-            speechText = matchingMed.getMedicineName() + " already added";
+            speechText = matchingMed.getMedicineName() + " already added for " + matchingMed.getDosageDate();
         }
 
         return buildResponse(speechText);
@@ -55,20 +56,20 @@ public class MedTrackerResponseService {
     public SpeechletResponse getListMedicineIntentResponse(Session session, Intent intent) {
 
         final MedItem medItem = getMedItem(session, intent);
-        String speechText = "No medicines for " + medItem.getUserName();
-        List<MedItemByUser> existingMeds;
-        if (medItem.getDosageDate() != null) {
-            existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), medItem.getDosageDate());
-            log.info("List of medicines user {} and dosage {}", medItem.getUserName(), medItem.getDosageDate());
-        } else {
-            existingMeds = medItemDao.getItemsByUserAndWeek(medItem.getUserName(), 1);
-            log.info("List of medicines user {}, {} found", medItem.getUserName(), existingMeds.size());
-        }
+        String speechText = "No medicines";
+        List<MedItemByUser> existingMeds = medItemDao.getItemsByUserAndDateGreaterThan(medItem.getUserName(), getListDefaultDate(medItem));
+        log.info("List of medicines user {} and dosage {}", medItem.getUserName(), getListDefaultDate(medItem));
+
         if (existingMeds.size() > 0) {
-            speechText = medItem.getUserName() + " has these medicines. ";
-            // TODO group by dosage date
+            speechText = "List of medicines. ";
+            Map<String, List<String>> groupByDosageDate = new HashMap<String, List<String>>();
             for (MedItemByUser mu : existingMeds) {
-                speechText += " For " + mu.getDosageDate() + " take " + mu.getMedicineName();
+                List<String> li = groupByDosageDate.getOrDefault(mu.getDosageDate(), new ArrayList<String>());
+                li.add(mu.getMedicineName());
+                groupByDosageDate.put(mu.getDosageDate(), li);
+            }
+            for (Map.Entry<String, List<String>> e : groupByDosageDate.entrySet()) {
+                speechText += " For " + e.getKey() + " take " + String.join(",", e.getValue()) + " .";
             }
         }
         return buildResponse(speechText);
@@ -82,12 +83,12 @@ public class MedTrackerResponseService {
         }
         else {
             speechText = "No medicines for " + medItem.getUserName();
-            List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndWeek(medItem.getUserName(), 12);
+            List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndDateGreaterThan(medItem.getUserName(), getListDefaultDate(medItem));
             MedItemByUser medItemByUser = existingMatchingMedicine(medItem, medItemByUsersList);
             if(medItemByUser != null) {
                 log.info("Found MedItem for user - " + medItemByUser.getUserName());
                 medItemDao.delete(medItemByUser);
-                speechText = "Delete medicine " + medItemByUser.getMedicineName() + " for " + medItemByUser.getUserName();
+                speechText = "Delete medicine " + medItemByUser.getMedicineName();
             }
         }
         return buildResponse(speechText);
@@ -118,11 +119,11 @@ public class MedTrackerResponseService {
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText(speechText);
 
-        // Create reprompt
-        Reprompt reprompt = new Reprompt();
-        reprompt.setOutputSpeech(speech);
+//        // Create reprompt
+//        Reprompt reprompt = new Reprompt();
+//        reprompt.setOutputSpeech(speech);
 
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return SpeechletResponse.newTellResponse(speech, card);
     }
 
     private MedItemByUser existingMatchingMedicine(MedItem newItem, List<MedItemByUser> existingItems) {
@@ -132,5 +133,13 @@ public class MedTrackerResponseService {
             }
         }
         return null;
+    }
+
+    private String getListDefaultDate(MedItem medItem) {
+        return medItem.getDosageDate() == null ? DateTime.now().minusWeeks(1).toLocalDate().toString(): medItem.getDosageDate();
+    }
+
+    private String getAddDefaultDate(MedItem medItem) {
+        return medItem.getDosageDate() == null ? DateTime.now().toLocalDate().toString(): medItem.getDosageDate();
     }
 }

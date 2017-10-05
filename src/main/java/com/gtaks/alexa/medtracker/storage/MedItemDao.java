@@ -50,12 +50,11 @@ public class MedItemDao {
         return mapper.query(MedItemByUser.class, queryExpression);
     }
 
-    public List<MedItemByUser> getItemsByUserAndWeek(String username, int weeksLookBack) {
-        String dosageDateLookback = DateTime.now().minusWeeks(weeksLookBack).toString();
+    public List<MedItemByUser> getItemsByUserAndDateGreaterThan(String username, String dateGreater) {
 
         HashMap<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
         eav.put(":un",  new AttributeValue().withS(username));
-        eav.put(":dd", new AttributeValue().withS(dosageDateLookback));
+        eav.put(":dd", new AttributeValue().withS(dateGreater));
 
         DynamoDBQueryExpression<MedItemByUser> queryExpression = new DynamoDBQueryExpression<MedItemByUser>()
                 .withIndexName(Index.USER_DOSAGE_DATE_INDEX)
