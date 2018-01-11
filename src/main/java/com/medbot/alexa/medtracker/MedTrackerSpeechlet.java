@@ -1,11 +1,9 @@
-package com.gtaks.alexa.medtracker;
+package com.medbot.alexa.medtracker;
 
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
 import com.amazon.speech.speechlet.dialog.directives.DelegateDirective;
-import com.amazon.speech.speechlet.dialog.directives.DialogDirective;
 import com.amazon.speech.speechlet.dialog.directives.DialogIntent;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,8 +16,6 @@ import java.util.List;
 public class MedTrackerSpeechlet implements Speechlet {
 
     private static final Logger log = LoggerFactory.getLogger(MedTrackerSpeechlet.class);
-
-    private AmazonDynamoDBClient amazonDynamoDBClient;
 
     private MedTrackerResponseService medTrackerResponseService;
 
@@ -57,7 +53,7 @@ public class MedTrackerSpeechlet implements Speechlet {
         } else if ("DeleteMedIntent".equals(intent.getName())) {
             return medTrackerResponseService.getDeleteMedicineIntentResponse(session, intent);
         } else {
-            throw new IllegalArgumentException("Unrecognized intent: " + intent.getName());
+            throw new SpeechletException("Unrecognized intent: " + intent.getName());
         }
     }
 

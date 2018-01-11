@@ -1,16 +1,14 @@
-package com.gtaks.alexa.medtracker;
+package com.medbot.alexa.medtracker;
 
-import com.amazon.speech.slu.ConfirmationStatus;
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.slu.Slot;
 import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
-import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
-import com.gtaks.alexa.medtracker.storage.MedItem;
-import com.gtaks.alexa.medtracker.storage.MedItemByUser;
-import com.gtaks.alexa.medtracker.storage.MedItemDao;
+import com.medbot.alexa.medtracker.storage.MedItem;
+import com.medbot.alexa.medtracker.storage.MedItemByUser;
+import com.medbot.alexa.medtracker.storage.MedItemDao;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +30,9 @@ public class MedTrackerResponseService {
     public SpeechletResponse getAddMedicineIntentResponse(Session session, Intent intent) {
         String speechText = "";
         final MedItem medItem = getMedItem(session, intent);
+        if (medItem == null) {
+            return buildResponse("Sorry try again");
+        }
         List<MedItemByUser> existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), getListDefaultDate(medItem));
         MedItemByUser matchingMed = existingMatchingMedicine(medItem, existingMeds);
         if (matchingMed == null) {
@@ -82,13 +83,13 @@ public class MedTrackerResponseService {
             speechText = "No user specified";
         }
         else {
-            speechText = "No medicines for " + medItem.getUserName();
+            speechText = "No medicines";
             List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndDateGreaterThan(medItem.getUserName(), getListDefaultDate(medItem));
             MedItemByUser medItemByUser = existingMatchingMedicine(medItem, medItemByUsersList);
             if(medItemByUser != null) {
                 log.info("Found MedItem for user - " + medItemByUser.getUserName());
                 medItemDao.delete(medItemByUser);
-                speechText = "Delete medicine " + medItemByUser.getMedicineName();
+                speechText = "Removed medicine " + medItemByUser.getMedicineName();
             }
         }
         return buildResponse(speechText);
@@ -127,6 +128,9 @@ public class MedTrackerResponseService {
     }
 
     private MedItemByUser existingMatchingMedicine(MedItem newItem, List<MedItemByUser> existingItems) {
+        if (existingItems == null) {
+            return null;
+        }
         for (MedItemByUser mu : existingItems) {
             if (mu.getMedicineName() != null && mu.getMedicineName().equalsIgnoreCase(newItem.getMedicineName())) {
                 return mu;

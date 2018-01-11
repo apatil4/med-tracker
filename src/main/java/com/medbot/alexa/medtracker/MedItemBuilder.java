@@ -1,8 +1,8 @@
-package com.gtaks.alexa.medtracker;
+package com.medbot.alexa.medtracker;
 
 import com.amazon.speech.slu.Slot;
-import com.gtaks.alexa.medtracker.storage.MedItem;
-import com.gtaks.alexa.medtracker.storage.MedItemByUser;
+import com.medbot.alexa.medtracker.storage.MedItem;
+import com.medbot.alexa.medtracker.storage.MedItemByUser;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

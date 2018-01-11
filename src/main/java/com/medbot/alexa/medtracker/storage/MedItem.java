@@ -1,4 +1,4 @@
-package com.gtaks.alexa.medtracker.storage;
+package com.medbot.alexa.medtracker.storage;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 

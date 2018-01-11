@@ -1,7 +1,7 @@
-package com.gtaks.alexa.medtracker.storage;
+package com.medbot.alexa.medtracker.storage;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import com.gtaks.alexa.medtracker.Index;
+import com.medbot.alexa.medtracker.Index;
 
 /**
  * Created by gaurav on 8/12/17.

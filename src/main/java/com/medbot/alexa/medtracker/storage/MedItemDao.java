@@ -1,16 +1,13 @@
-package com.gtaks.alexa.medtracker.storage;
+package com.medbot.alexa.medtracker.storage;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.gtaks.alexa.medtracker.Index;
-import com.gtaks.alexa.medtracker.MedItemBuilder;
-import com.gtaks.alexa.medtracker.MedTrackerResponseService;
-import org.joda.time.DateTime;
+import com.medbot.alexa.medtracker.Index;
+import com.medbot.alexa.medtracker.MedItemBuilder;
+import com.medbot.alexa.medtracker.MedTrackerResponseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
