@@ -31,7 +31,7 @@ public class MedTrackerResponseService {
         String speechText = "";
         final MedItem medItem = getMedItem(session, intent);
         if (medItem == null) {
-            return buildResponse("Sorry try again");
+            return buildResponse(SpeechConstants.ERROR);
         }
         List<MedItemByUser> existingMeds = medItemDao.getItemByUserAndDosageDate(medItem.getUserName(), getListDefaultDate(medItem));
         MedItemByUser matchingMed = existingMatchingMedicine(medItem, existingMeds);
@@ -50,19 +50,27 @@ public class MedTrackerResponseService {
     }
 
     public SpeechletResponse getLaunchResponse() {
-        String speechText = "Welcome to the MedTracker, you can save your daily medicine dosage here";
+        String speechText = SpeechConstants.WELCOME;
         return buildResponse(speechText);
+    }
+
+    public SpeechletResponse getHelpResponse() {
+        return buildResponse(SpeechConstants.HELP);
+    }
+
+    public SpeechletResponse getStopResponse() {
+        return buildResponse(SpeechConstants.BYE);
     }
 
     public SpeechletResponse getListMedicineIntentResponse(Session session, Intent intent) {
 
         final MedItem medItem = getMedItem(session, intent);
-        String speechText = "No medicines";
+        String speechText = SpeechConstants.NOT_FOUND;
         List<MedItemByUser> existingMeds = medItemDao.getItemsByUserAndDateGreaterThan(medItem.getUserName(), getListDefaultDate(medItem));
         log.info("List of medicines user {} and dosage {}", medItem.getUserName(), getListDefaultDate(medItem));
 
         if (existingMeds.size() > 0) {
-            speechText = "List of medicines. ";
+            speechText = "Here is your list of medicines. ";
             Map<String, List<String>> groupByDosageDate = new HashMap<String, List<String>>();
             for (MedItemByUser mu : existingMeds) {
                 List<String> li = groupByDosageDate.getOrDefault(mu.getDosageDate(), new ArrayList<String>());
@@ -78,19 +86,14 @@ public class MedTrackerResponseService {
 
     public SpeechletResponse getDeleteMedicineIntentResponse(Session session, Intent intent) {
         final MedItem medItem = getMedItem(session, intent);
-        String speechText = "";
-        if(medItem.getUserName() == null) {
-            speechText = "No user specified";
-        }
-        else {
-            speechText = "No medicines";
-            List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndDateGreaterThan(medItem.getUserName(), getListDefaultDate(medItem));
-            MedItemByUser medItemByUser = existingMatchingMedicine(medItem, medItemByUsersList);
-            if(medItemByUser != null) {
-                log.info("Found MedItem for user - " + medItemByUser.getUserName());
-                medItemDao.delete(medItemByUser);
-                speechText = "Removed medicine " + medItemByUser.getMedicineName();
-            }
+
+        String speechText = SpeechConstants.NOT_FOUND;
+        List<MedItemByUser> medItemByUsersList = medItemDao.getItemsByUserAndDateGreaterThan(medItem.getUserName(), getListDefaultDate(medItem));
+        MedItemByUser medItemByUser = existingMatchingMedicine(medItem, medItemByUsersList);
+        if (medItemByUser != null) {
+            log.info("Found MedItem " + medItemByUser.getMedicineName() + " for user - " + medItemByUser.getUserName());
+            medItemDao.delete(medItemByUser);
+            speechText = "Removed medicine " + medItemByUser.getMedicineName();
         }
         return buildResponse(speechText);
     }
