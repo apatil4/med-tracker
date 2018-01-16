@@ -1,50 +1,1442 @@
 {
-  "intents": [
+  "languageModel": {
+    "types": [
+      {
+        "name": "Medicine_names",
+        "values": [
+          {
+            "id": "141",
+            "name": {
+              "value": "Atorvastatin Calcium",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "140",
+            "name": {
+              "value": "Levothyroxine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "139",
+            "name": {
+              "value": "Lisinopril",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "138",
+            "name": {
+              "value": "Omeprazole",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "137",
+            "name": {
+              "value": "Metformin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "136",
+            "name": {
+              "value": "Amlodipine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "135",
+            "name": {
+              "value": "Simvastatin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "134",
+            "name": {
+              "value": "Hydrocodone",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "133",
+            "name": {
+              "value": "Acetaminophen",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "132",
+            "name": {
+              "value": "Metoprolol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "131",
+            "name": {
+              "value": "Losartan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "130",
+            "name": {
+              "value": "Azithromycin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "129",
+            "name": {
+              "value": "Zolpidem",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "128",
+            "name": {
+              "value": "Hydrochlorothiazide",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "127",
+            "name": {
+              "value": "Furosemide",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "126",
+            "name": {
+              "value": "Pantoprazole",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "125",
+            "name": {
+              "value": "Gabapentin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "124",
+            "name": {
+              "value": "Amoxicillin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "123",
+            "name": {
+              "value": "Prednisone",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "122",
+            "name": {
+              "value": "Sertraline",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "121",
+            "name": {
+              "value": "Tamsulosin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "120",
+            "name": {
+              "value": "Fluticasone",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "119",
+            "name": {
+              "value": "Pravastatin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "118",
+            "name": {
+              "value": "Tramadol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "117",
+            "name": {
+              "value": "Montelukast",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "116",
+            "name": {
+              "value": "Escitalopram",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "115",
+            "name": {
+              "value": "Carvedilol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "114",
+            "name": {
+              "value": "Alprazolam",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "113",
+            "name": {
+              "value": "Warfarin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "112",
+            "name": {
+              "value": "Meloxicam",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "111",
+            "name": {
+              "value": "Clopidogrel",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "110",
+            "name": {
+              "value": "Potassium Clavulanate",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "109",
+            "name": {
+              "value": "Allopurinol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "108",
+            "name": {
+              "value": "Potassium Chloride",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "107",
+            "name": {
+              "value": "Methylprednisolone",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "106",
+            "name": {
+              "value": "Trazodone",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "105",
+            "name": {
+              "value": "Cyclobenzaprine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "104",
+            "name": {
+              "value": "Amphetamine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "103",
+            "name": {
+              "value": "Ventolin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "102",
+            "name": {
+              "value": "Venlafaxine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "101",
+            "name": {
+              "value": "Crestor",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "100",
+            "name": {
+              "value": "Fenofibrate",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "99",
+            "name": {
+              "value": "Fluoxetine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "98",
+            "name": {
+              "value": "Duloxetine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "97",
+            "name": {
+              "value": "Cialis",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "96",
+            "name": {
+              "value": "Atenolol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "95",
+            "name": {
+              "value": "Losartan Potassium",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "94",
+            "name": {
+              "value": "Lipitor",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "93",
+            "name": {
+              "value": "Synthroid",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "92",
+            "name": {
+              "value": "Prinivil",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "91",
+            "name": {
+              "value": "Prilosec",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "90",
+            "name": {
+              "value": "Glucophage",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "89",
+            "name": {
+              "value": "Norvasc",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "88",
+            "name": {
+              "value": "Zocor",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "87",
+            "name": {
+              "value": "Lortab",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "86",
+            "name": {
+              "value": "Toprol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "85",
+            "name": {
+              "value": "Cozaar",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "84",
+            "name": {
+              "value": "Zithromax",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "83",
+            "name": {
+              "value": "Ambien",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "82",
+            "name": {
+              "value": "Microzide",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "81",
+            "name": {
+              "value": "Lasix",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "80",
+            "name": {
+              "value": "Lopressor",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "79",
+            "name": {
+              "value": "Protonix",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "78",
+            "name": {
+              "value": "Neurontin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "77",
+            "name": {
+              "value": "Amoxil",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "76",
+            "name": {
+              "value": "Deltasone",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "75",
+            "name": {
+              "value": "Zoloft",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "74",
+            "name": {
+              "value": "Flomax",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "73",
+            "name": {
+              "value": "Flonase",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "72",
+            "name": {
+              "value": "Pravachol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "71",
+            "name": {
+              "value": "Ultram",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "70",
+            "name": {
+              "value": "Singulair",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "69",
+            "name": {
+              "value": "Lexapro",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "68",
+            "name": {
+              "value": "Coreg",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "67",
+            "name": {
+              "value": "Xanax",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "66",
+            "name": {
+              "value": "Coumadin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "65",
+            "name": {
+              "value": "Mobic",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "64",
+            "name": {
+              "value": "Plavix",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "63",
+            "name": {
+              "value": "Augmentin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "62",
+            "name": {
+              "value": "Zyloprim",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "61",
+            "name": {
+              "value": "Wellbutrin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "60",
+            "name": {
+              "value": "Zestoretic",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "59",
+            "name": {
+              "value": "Celexa",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "58",
+            "name": {
+              "value": "Tenormin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "57",
+            "name": {
+              "value": "Cymbalta",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "56",
+            "name": {
+              "value": "Prozac",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "55",
+            "name": {
+              "value": "Tricor",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "54",
+            "name": {
+              "value": "Effexor",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "53",
+            "name": {
+              "value": "Adderall",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "52",
+            "name": {
+              "value": "Flexeril",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "51",
+            "name": {
+              "value": "Oleptro",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "50",
+            "name": {
+              "value": "Medrol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "49",
+            "name": {
+              "value": "Klor-Con",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "48",
+            "name": {
+              "value": "A",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "47",
+            "name": {
+              "value": "B",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "46",
+            "name": {
+              "value": "C",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "45",
+            "name": {
+              "value": "D",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "44",
+            "name": {
+              "value": "E",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "43",
+            "name": {
+              "value": "F",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "27",
+            "name": {
+              "value": "V",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "26",
+            "name": {
+              "value": "W",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "25",
+            "name": {
+              "value": "X",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "24",
+            "name": {
+              "value": "Y",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "23",
+            "name": {
+              "value": "Z",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "22",
+            "name": {
+              "value": "Red",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "21",
+            "name": {
+              "value": "Green",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "20",
+            "name": {
+              "value": "Yellow",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "19",
+            "name": {
+              "value": "Blue",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "18",
+            "name": {
+              "value": "Orange",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "17",
+            "name": {
+              "value": "Purple",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "16",
+            "name": {
+              "value": "Cyan",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "15",
+            "name": {
+              "value": "Magenta",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "14",
+            "name": {
+              "value": "Lime",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "13",
+            "name": {
+              "value": "Pink",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "12",
+            "name": {
+              "value": "Teal",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "11",
+            "name": {
+              "value": "Lavender",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "10",
+            "name": {
+              "value": "Brown",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "9",
+            "name": {
+              "value": "Beige",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "8",
+            "name": {
+              "value": "Maroon",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "7",
+            "name": {
+              "value": "Mint",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "6",
+            "name": {
+              "value": "Olive",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "5",
+            "name": {
+              "value": "Coral",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "4",
+            "name": {
+              "value": "Navy",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "3",
+            "name": {
+              "value": "Grey",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "2",
+            "name": {
+              "value": "White",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "1",
+            "name": {
+              "value": "Black",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Advil",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Ibuprofen",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Afrin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Aleve",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "analgesic",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Align",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Allegra",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Aspirin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Benadryl",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Bengay",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Bufferin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "capsaicin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Claritin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Colace",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Loratadine",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Cortizone",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Dulcolax",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Gas-X",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Lactaid",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Metamucil",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Miralax",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Motrin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Mucinex",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Mylanta",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Neosporin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Pepcid",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Pepto Bismol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Robitussin Original",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Sudafed",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Tums",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Tylenol",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Zantac",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Zyrtec",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "doxycycline",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cephalexin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "ciprofloxacin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "clavulanate",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "levofloxacin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Cipro",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Keflex",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Bactrim",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Levaquin",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Avelox",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Cleocin",
+              "synonyms": []
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AddMedIntent",
+        "samples": [
+          "{user} took {medicine}  {datetime}",
+          "Add {medicine} {user}  {datetime}",
+          "I took {medicine}",
+          "I took {medicine} at {datetime}",
+          "{user} took {medicine}",
+          "{user} took medicine",
+          "i took my medicine"
+        ],
+        "slots": [
+          {
+            "name": "user",
+            "type": "AMAZON.US_FIRST_NAME"
+          },
+          {
+            "name": "medicine",
+            "type": "Medicine_names",
+            "samples": [
+              "{medicine}"
+            ]
+          },
+          {
+            "name": "datetime",
+            "type": "AMAZON.DATE"
+          }
+        ]
+      },
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "DeleteMedIntent",
+        "samples": [
+          "DeleteMedIntent delete medicine {medicine} for {user}",
+          "remove {medicine}",
+          "remove medicine {medicine}",
+          "remove medicine {medicine} for {user}"
+        ],
+        "slots": [
+          {
+            "name": "medicine",
+            "type": "Medicine_names"
+          },
+          {
+            "name": "user",
+            "type": "AMAZON.US_FIRST_NAME"
+          }
+        ]
+      },
+      {
+        "name": "GetHistoryIntent",
+        "samples": [
+          "When did I take my medicine",
+          "When did {user} last take {medicine}",
+          "What medicines did {user} take last week",
+          "What medicines did I take last week",
+          "What medicines did {user} take since {datetime}",
+          "When did {user} take {medicine} since {datetime}"
+        ],
+        "slots": [
+          {
+            "name": "user",
+            "type": "AMAZON.US_FIRST_NAME"
+          },
+          {
+            "name": "medicine",
+            "type": "Medicine_names"
+          },
+          {
+            "name": "datetime",
+            "type": "AMAZON.DATE"
+          }
+        ]
+      },
+      {
+        "name": "ListMedIntent",
+        "samples": [
+          "my medicines {datetime} ",
+          "list medicines {datetime}",
+          "list my medicines",
+          "what are my medicines ",
+          "what are my medicines {datetime}",
+          "what are {user} medicines",
+          "list {user} medicines",
+          "list {user} medicines {datetime}"
+        ],
+        "slots": [
+          {
+            "name": "user",
+            "type": "AMAZON.US_FIRST_NAME"
+          },
+          {
+            "name": "datetime",
+            "type": "AMAZON.DATE"
+          }
+        ]
+      },
+      {
+        "name": "ReminderIntent",
+        "samples": [
+          "My next medicine is due {datetime}",
+          "{user} next medicine is due {datetime}",
+          "{user} next dose of {medicine} is {datetime}"
+        ],
+        "slots": [
+          {
+            "name": "user",
+            "type": "AMAZON.US_FIRST_NAME"
+          },
+          {
+            "name": "medicine",
+            "type": "Medicine_names"
+          },
+          {
+            "name": "datetime",
+            "type": "AMAZON.DATE"
+          }
+        ]
+      }
+    ],
+    "invocationName": "med bot"
+  },
+  "prompts": [
     {
-      "intent": "AddMedIntent",
-      "slots": [
+      "id": "Elicit.Intent-AddMedIntent.IntentSlot-medicine",
+      "variations": [
         {
-          "name": "user",
-          "type": "AMAZON.US_FIRST_NAME"
-        },
-        {
-          "name": "medicine",
-          "type": "AMAZON.US_FIRST_NAME"
-        },
-        {
-          "name": "datetime",
-          "type": "AMAZON.DATE"
+          "type": "PlainText",
+          "value": "Please give medicine name, you can also use colors or numbers like yellow or A, B, C "
         }
       ]
     },
     {
-      "intent": "ListMedIntent",
-      "slots": [
+      "id": "Confirm.Intent-AddMedIntent.IntentSlot-medicine",
+      "variations": [
         {
-          "name": "user",
-          "type": "AMAZON.US_FIRST_NAME"
-        },
-        {
-          "name": "datetime",
-          "type": "AMAZON.DATE"
+          "type": "PlainText",
+          "value": "You said {medicine}, is that right?"
         }
       ]
     },
     {
-      "intent": "DeleteMedIntent",
-      "slots": [
+      "id": "Confirm.Intent-DeleteMedIntent",
+      "variations": [
         {
-          "name": "user",
-          "type": "AMAZON.US_FIRST_NAME"
-        },
-        {
-          "name": "medicine",
-          "type": "AMAZON.US_FIRST_NAME"
+          "type": "PlainText",
+          "value": "Remove {medicine}, is that right?"
         }
       ]
     },
     {
-      "intent": "AMAZON.HelpIntent"
+      "id": "Elicit.Intent-DeleteMedIntent.IntentSlot-medicine",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Please say the name of the medicine which you want to remove"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-DeleteMedIntent.IntentSlot-medicine",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "You have asked to remove the medicine {medicine}"
+        }
+      ]
     }
-  ]
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "AddMedIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "user",
+            "type": "AMAZON.US_FIRST_NAME",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "medicine",
+            "type": "Medicine_names",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Intent-AddMedIntent.IntentSlot-medicine",
+              "confirmation": "Confirm.Intent-AddMedIntent.IntentSlot-medicine"
+            }
+          },
+          {
+            "name": "datetime",
+            "type": "AMAZON.DATE",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      },
+      {
+        "name": "DeleteMedIntent",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirmation": "Confirm.Intent-DeleteMedIntent"
+        },
+        "slots": [
+          {
+            "name": "medicine",
+            "type": "Medicine_names",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Intent-DeleteMedIntent.IntentSlot-medicine",
+              "confirmation": "Confirm.Intent-DeleteMedIntent.IntentSlot-medicine"
+            }
+          },
+          {
+            "name": "user",
+            "type": "AMAZON.US_FIRST_NAME",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      }
+    ]
+  }
 }

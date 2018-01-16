@@ -61,7 +61,7 @@ public class MedTrackerSpeechlet implements Speechlet {
             return medTrackerResponseService.getHelpResponse();
         } else if ("AMAZON.StopIntent".equals(intent.getName())) {
             return medTrackerResponseService.getStopResponse();
-        } else if ("AMAZON.StopIntent".equals(intent.getName())) {
+        } else if ("AMAZON.CancelIntent".equals(intent.getName())) {
             return medTrackerResponseService.getStopResponse();
         } else {
             throw new SpeechletException("Unrecognized intent: " + intent.getName());
